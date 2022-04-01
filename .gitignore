@@ -1,5 +1,6 @@
 /networkx_gephi/*
-*.ipynb_checkpoints/*
+*/.ipynb_checkpoints/*
 *.aux
 *.log
 *.rar
+*.gz
