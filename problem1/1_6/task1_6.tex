@@ -1,0 +1,180 @@
+\documentclass[12pt,fleqn]{article}
+
+\usepackage[cp1251]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{amssymb,amsmath,mathrsfs,amsthm}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\graphicspath{ {./imgs/} }
+\usepackage[footnotesize]{caption}
+\usepackage{indentfirst}
+\usepackage{amsthm}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[labelsep=space, singlelinecheck=on]{subcaption}
+
+\usepackage{algorithm, setspace}
+\usepackage{algpseudocode}
+\usepackage{indentfirst}
+\usepackage{stmaryrd}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{dsfont}
+%\usepackage[ruled,section]{algorithm}
+%\usepackage[noend]{algorithmic}
+%\usepackage[all]{xy}
+
+\textheight=24cm
+\textwidth=16cm
+\oddsidemargin=5mm
+\evensidemargin=-5mm
+\marginparwidth=36pt
+\topmargin=-1cm
+\footnotesep=3ex
+%\flushbottom
+\raggedbottom
+\tolerance 3000
+
+\clubpenalty=10000
+\widowpenalty=10000
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\baselinestretch}{1.5} 
+
+\theoremstyle{definition}
+\newtheorem{define}{Определеие}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{assumption}{Утверждение}
+
+\newlist{Properties}{enumerate}{2}
+\setlist[Properties]{label=\arabic*$^{\circ}$.,itemindent=*}
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}} {\mbox{\boldmath$\scriptstyle#1$}} {\mbox{\boldmath$\scriptscriptstyle#1$}}}    
+
+\begin{document}
+Во всех задачах будет единое обозначение: 
+\begin{itemize}
+\setlength\itemsep{-0.25em}
+ \item $G_n = (V_n, E_n)$ -- элемент последовательности графов
+ \item Индекс $n$ отвечает за элемент последовательности
+ \item $|V_n| = N_n$ -- число вершин в графе $G_n$, $D_n = \frac{|E_n|}{L_{max}}$ -- характеристика плотности графа $G_n$.
+ \item $\mathds{P}_n(d) = \frac{|\{v \in V_n:\;\deg v = d\}|}{N_n}$ -- распределение степеней вершин в графе $G_n$ $\left(\sum\limits_{k=0}^{N_n - 1} \mathds{P}_n(k) = 1, \quad \mathds{P}_n(d) \in [0, 1]\;\; \forall d=\overline{0, N_n - 1} \right)$.
+ \item Степени вершин подчиняются степенному закону (обозначим как $\mathds{P}_n \in \mathcal{P}$), если $\exists \gamma > 0, \; c\equiv const: \;\; \mathds{P}_n(d) \sim \frac{c}{d^{\gamma}}$
+\end{itemize}
+
+ \section*{Задача 1. Графы без степенного закона}
+ \textbf{Условие}:
+ \small{1. Приведите пример последовательности плотных (неразреженных) графов,
+степени вершин которых не подчиняются степенному закону. 
+
+2. Приведите пример последовательности разреженных графов, степени вершин которых не подчиняются степенному закону}
+
+\textbf{Примеры}:
+\begin{enumerate}
+ \item Графы для условия 1 должны удовлетворять условиям: $D_n \approx 1, \;\; \mathds{P}_n \notin \mathcal{P}$. 
+ 
+ a) Возьмём последовательность $\{G_n\} = \{K_n\}$, состоящую из \textit{полных неориентированных графов} с числом вершин $n$ (тогда $D_n = 1$). Каждый из графов имеет вырожденное распределение степеней вершин в точке $\deg v = N_n - 1$: $\mathds{P}_n(N_n - 1) = 1$, где $N_n$ -- число вершин в полном графе $G_n$ (т.е. $\mathds{P}_n \notin \mathcal{P}$).
+ 
+ b) Аналогично, для ориентированных графов
+ \item Графы для условия 2 должны удовлетворять условиям: $D_n \ll 1, \;\; \mathds{P}_n \notin \mathcal{P}$.
+ 
+ a) Возьмём последовательность $\{G_n\}$, состоящую из неориентированных графов с числом вершин $n$ без рёбер, $D_n=0$ и $\mathds{P}_n(0) = 1$ (т.е. $\mathds{P}_n \notin \mathcal{P}$).
+ 
+ Однако это сильно вырожденный случай, можно предложить ещё вариант: Возьмём последовательность $\{G_n\}$, состоящую из неориентированных графов с числом вершин $n$ с выбранным случайно одним ребром (тогда $D_n \xrightarrow[n\rightarrow +\infty]{} 0$). Каждый из графов имеет распределение степеней вершин $\mathds{P}_n(0) = \frac{n - 2}{n}, \;\; \mathds{P}_n(1) = \frac{2}{n}$     (т.е. $\mathds{P}_n \notin \mathcal{P}$, нет требуемой константы).
+ 
+ b) Аналогично, для ориентированных графов (только в $\mathds{P}_n(1) = \frac{1}{n}$)
+ 
+\end{enumerate}
+
+ \section*{Задача 2. Неор. графы со степенным законом}
+ \textbf{Условие}: \small{Приведите пример последовательности неориентированных графов (кратные
+рёбра и петли разрешаются), степени вершин которых подчиняются какому-нибудь степенному
+закону. Обязательно доказательство степенного закона}
+
+Допустим, мы хотим распределение, близкое к $\frac{c}{d^2}$. Прологарифмируем: $\log (\mathds{P}_n(d)) = \log(c) - 2 \log(d)$
+
+ \section*{Задача 3. Неуязвимые к атакам на хабы связные графы}
+ \textbf{Условие}: \small{Приведите пример последовательности связных графов, которые не уязвимы
+к атакам на хабы.}
+
+\textbf{Пример}: Последовательность полных графов на $n$ вершинах не уязвима к атакам на хабы, т.к. при удалении $\lfloor c |V_n|\rfloor, \; c\in (0, 1)$ упорядоченных по степеням вершин (одинаковым степеням) останутся вершины, соединённые со всеми.
+ \section*{Задача 4. О локальном кластерном коэффициенте}
+ \textbf{Условие}: \small{Рассмотрим при растущих значениях $n$, кратных четырём, последовательность графов следующего вида:
+ 
+\begin{figure}[!ht]
+\centering
+ \includegraphics[scale=1]{img4.png}
+\end{figure}
+
+Покажите, что при $n \rightarrow +\infty$ средний локальный кластерный коэффициент такого графа можно
+ограничить снизу положительной константой, а глобальный кластерный коэффициент стремится к 0.}
+
+\textbf{Рассуждения}:
+
+Для начала, рассмотрим значения локального кластерного коэффициента $C_v$ для вершин в приведённом графе. 
+
+Для вершин в левой группе $C_{v_{left}} = \frac{1}{1} = 1$, поскольку они соединены только с центральной вершиной группы. Центральная вершина - $C_{v_{center}} = \frac{0}{n/2\cdot(n/2 - 1) / 2} = 0$, поскольку имеет $n/2$ соседей, которые не соединены между собой ни одним ребром.
+
+Для вершин в правой группе: будем нумеровать относительно центральной вершины по часовой стрелке с 1. Тогда для вершин на нечётных позициях $C_{v_{right\_odd}} = \frac{1}{2/2} = 1$, т.к. имеют двух соседей, которые соединены возможным ребром.
+
+На чётных позициях $C_{v_{right\_even}} = \frac{2}{4\cdot3/2} = \frac{1}{3}$, т.к. они имеют 4 соседа, среди которых есть только два ребра.
+
+Центральная правая вершина имеет $C_{v_{right\_center}} = \frac{2}{5\cdot4/2} = \frac{1}{5}$, т.к. имеет 5 соседей, но только два ребра среди них.
+
+Посчитаем итоговый \textit{средний локальный к.к.} $C(G_n) = \frac{1}{|V_n|}\sum\limits_{v\in V_n}C_v$. В левой группе -- $n/2 - 1$ вершина с $C_{v_{left}}=1$ и центральная с $C_{v_{center}} = 0$. В правой: $n/4$ на нечётных позициях с $C_{v_{right\_odd}} = 1$, $n/4 - 1$ на чётных позициях с $C_{v_{right\_even}} = \frac{1}{3}$ и центральная с $C_{v_{right\_center}} = \frac{1}{5}$.
+
+Итого: 
+\begin{gather}
+ C(G_n) = \frac{1}{n} \left[\left(\frac{n}{2} - 1 \right)\cdot 1 + 0 + \frac{n}{4}\cdot 1 + \left(\frac{n}{4} - 1\right)\cdot\frac{1}{3} + \frac{1}{5}\right] = \nonumber\\
+ = \left(\frac{1}{2} - \frac{1}{n} \right) + \frac{1}{4} + \left(\frac{1}{4} - \frac{1}{n}\right)\cdot\frac{1}{3} + \frac{1}{5n} = \nonumber\\
+ = \frac{1}{2} + \frac{1}{4} + \frac{1}{12} - \frac{1}{n} - \frac{1}{3n} + \frac{1}{5n} = \frac{10}{12} - \frac{1}{n}\frac{17}{15} = \frac{5}{6} - \frac{17}{15}\frac{1}{n} \xrightarrow[n\rightarrow +\infty]{} \frac{5}{6}
+\end{gather}
+
+Аналогично, \textit{глобальный к.к.} $T(G_n) = \frac{\sum\limits_{v\in V_n}C_{n_v}^2 C_v}{\sum\limits_{v\in V_n}C_{n_v}^2}$
+\begin{gather}
+ T(G_n) = \frac{1\cdot\left(\frac{n}{2} - 1 \right)\cdot 1 + 0 + 1\cdot \frac{n}{4}\cdot 1 + 6\cdot\left(\frac{n}{4} - 1\right)\cdot\frac{1}{3} + 10\cdot\frac{1}{5}}{1\cdot\left(\frac{n}{2} - 1 \right) + 0 + 1\cdot \frac{n}{4}+6\cdot\left(\frac{n}{4} - 1\right) + 10} = \nonumber\\
+ = \frac{\left(\frac{n}{2} - 1 \right)+ \frac{n}{4} + 2\cdot\left(\frac{n}{4} - 1\right) + 2}{\left(\frac{n}{2} - 1 \right) +\frac{n}{4}+6\cdot\left(\frac{n}{4} - 1\right) + 10} = 
+ \frac{\left(2n - 4 \right)+ n + 2\cdot\left(n - 4\right) + 8}{\left(2n - 4 \right) +n+6\cdot\left(n - 4\right) + 40} = \nonumber\\
+ = \frac{2n - 4 + n + 2n - 8 + 8}{2n - 4 +n+6n - 24 + 40} = \frac{5n - 4}{9n + 12} \xrightarrow[n\rightarrow +\infty]{} \frac{5}{9}
+\end{gather}
+Что-то не получилось с прямой формулой. Воспользуемся формулой $T(G_n) = \frac{3\#(K_3, G_n)}{\#(P_2, G_n)}$. Количество пар равно (подсчёт слева направо) $\frac{n}{2} - 1 + 1 + \frac{n}{2} - 1 + \frac{n}{4}$ (последние два слагаемых - число рёбер в цепи по кругу и число рёбер через 1 элемент).
+Количество треугольников равно числу рёбер, идущих через 1 вершину,$\frac{n}{4}$.
+Тогда $T(G_n) = \frac{3\frac{n}{4}}{\frac{n}{2} - 1 + 1 + \frac{n}{2} - 1 + \frac{n}{4}} = \frac{3n}{5n - 4}$. Снова неудача.
+ \section*{Задача 5. Клика 6 в модели Эрдёша-Реньи}
+ \textbf{Условие}: \small{Докажите, что при вероятности ребра $p$ такой, что $pn^{\frac{2}{5}} \xrightarrow[n \rightarrow +\infty]{} 0$
+в случайном графе $G(n, p)$ в модели Эрдёша-Реньи асимптотически почти наверное нет клик на 6
+вершинах, а при вероятности ребра такой, что $pn^{\frac{2}{5}} \xrightarrow[n \rightarrow +\infty]{} +\infty$ в $G(n, p)$ асимптотически почти наверное есть клика на 6 вершинах.}
+
+\textbf{Доказательство}:
+Введём случайную величину $\xi_6=\{\text{число клик на шести вершинах в графе}\}$.
+
+Начнём с \textit{доказательства первого факта}. Для этого оценим сверху вероятность того, что случайная величина $\xi_6$ примет значение не меньше 1. Оценку сверху даёт выбор подмножеств на 6 вершинах из $n$ и проведение с вероятностью $p$ рёбер до клики на них. Фактически, по аналогии с треугольниками, мы ограничили сверху мат. ожиданием случайной величины $\xi_6$.
+\begin{gather}
+ \mathds{P}\{\xi_6 \geq 1\} \leq \mathbb{E}[\xi_6] \leq C_n^6 p^{6\cdot5/2} = \frac{n\cdot(n-1)\cdot\dots\cdot(n-5)}{720} p^{15} = O(n^6p^{15}) = O((n^{\frac{2}{5}}p)^{15})
+\end{gather}
+ Таким образом, при соблюдении условия $pn^{\frac{2}{5}} \xrightarrow[n \rightarrow +\infty]{} 0$ получаем устремление к 0 вероятности появления клики на 6 вершинах.
+ 
+ Для доказательства \textit{второго факта} ограничим данную вероятность с другой стороны, воспользовавшись неравенством Чебышёва.
+ \begin{gather*}
+ \mathds{P}\{\xi_6 \geq 1\} = 1 -  \mathds{P}\{\xi_6 \leq 0\} = 1 -  \mathds{P}\{-\xi_6\geq 0 \} = 1 -  \mathds{P}\{\mathbb{E}[\xi_6]-\xi_6\geq \mathbb{E}[\xi_6] \} \geq \\
+ \geq 1 -  \mathds{P}\{|\mathbb{E}[\xi_6]-\xi_6|\geq \mathbb{E}[\xi_6] \} \geq 1 - \frac{\mathbb{D}[\xi_6]}{\mathbb{E}[\xi_6]^2}
+\end{gather*} 
+Найдём $\mathbb{E}[\xi_6^2]$ для дисперсии $\mathbb{D}[\xi_6] = \mathbb{E}[\xi_6^2] - \mathbb{E}[\xi_6]^2$.
+\begin{gather*}
+ \mathbb{E}[\xi_6^2] = \mathbb{E}\left[\left(\sum\limits_{j=1}^{C_n^6}[\text{п/м 6-ти вершин с индексом j образует клику}]\right)^2\right] = \\
+ = \mathbb{E}[\xi_6] + \sum\limits_{i=1}^{C_n^6}\sum\limits_{j\neq i}\mathbb{E}[\text{п/м i образует }K_6][\text{п/м j образует }K_6] = \\ 
+ \{\text{Перебор по пересечениям двух множеств 6 точек, как на лекции, даёт схожее выражение}\} =\\
+ = C_n^6 p^{15} + \sum\limits_{j=1}^5 C_{n}^{6}C_{n-6}^j (p^{C_n^6 - C_j^2})^2
+\end{gather*}
+То есть,
+\begin{gather*}
+ \frac{\mathbb{D}[\xi_6]}{\mathbb{E}[\xi_6]^2} = \frac{\mathbb{E}[\xi_6^2]}{\mathbb{E}[\xi_6]^2} - 1 = \frac{C_n^6 p^{15} + \sum\limits_{j=1}^5 C_{n}^{6}C_{n-6}^j (p^{C_n^6 - C_j^2})^2}{(C_n^6 p^{15})^2} - 1 
+\end{gather*}
+Выражение в числителе по асимптотике  при $pn^{\frac{2}{5}} \xrightarrow[n \rightarrow +\infty]{} +\infty$ схоже по поведению со знаменателем, поэтому
+\begin{gather*}
+ \frac{\mathbb{D}[\xi_6]}{\mathbb{E}[\xi_6]^2} \xrightarrow[n \rightarrow +\infty]{} 0 \Rightarrow \mathds{P}\{\xi_6 \geq 1\} \sim 1
+\end{gather*}
+ \section*{Задача 6. Цикл в компоненте связности в модели Эрдёша-Реньи}
+ \textbf{Условие}: \small{Докажите, что при $p = \frac{c}{n}$ , где $c < 1$, в случайном графе $G(n, p)$ в модели Эрдёша-Реньи асимптотически почти наверное каждая компонента связности содержит не более
+одного цикла.}
+ 
+\end{document}

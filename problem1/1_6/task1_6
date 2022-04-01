@@ -1,0 +1,60 @@
+\documentclass[12pt,fleqn]{article}
+
+\usepackage[cp1251]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{amssymb,amsmath,mathrsfs,amsthm}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\graphicspath{ {../imgs/} }
+\usepackage[footnotesize]{caption}
+\usepackage{indentfirst}
+\usepackage{amsthm}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[labelsep=space, singlelinecheck=on]{subcaption}
+
+\usepackage{algorithm, setspace}
+\usepackage{algpseudocode}
+\usepackage{indentfirst}
+\usepackage{stmaryrd}
+\usepackage{enumitem}
+%\usepackage[ruled,section]{algorithm}
+%\usepackage[noend]{algorithmic}
+%\usepackage[all]{xy}
+
+% РџР°СЂР°РјРµС‚СЂС‹ СЃС‚СЂР°РЅРёС†С‹
+\textheight=24cm
+\textwidth=16cm
+\oddsidemargin=5mm
+\evensidemargin=-5mm
+\marginparwidth=36pt
+\topmargin=-1cm
+\footnotesep=3ex
+%\flushbottom
+\raggedbottom
+\tolerance 3000
+% РїРѕРґР°РІРёС‚СЊ СЌС„С„РµРєС‚ "РІРёСЃСЏС‡РёС… СЃС‚pРѕРє"
+\clubpenalty=10000
+\widowpenalty=10000
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\baselinestretch}{1.5} %РґР»СЏ РїРµС‡Р°С‚Рё СЃ Р±РѕР»СЊС€РёРј РёРЅС‚РµСЂРІР°Р»РѕРј
+
+\theoremstyle{definition}
+\newtheorem{define}{РћРїСЂРµРґРµР»РµРЅРёРµ}
+\newtheorem{theorem}{РўРµРѕСЂРµРјР°}
+\newtheorem{lemma}[theorem]{Р›РµРјРјР°}
+\newtheorem{assumption}{РЈС‚РІРµСЂР¶РґРµРЅРёРµ}
+
+\newlist{Properties}{enumerate}{2}
+\setlist[Properties]{label=\arabic*$^{\circ}$.,itemindent=*}
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}} {\mbox{\boldmath$\scriptstyle#1$}} {\mbox{\boldmath$\scriptscriptstyle#1$}}}    
+
+\begin{document}
+ \section{Задача 1. Примеры разреженных и плотных графов без степенного закона}
+ \section{Задача 2. Примеры неор. графов со степенным законом}
+ \section{Задача 3. Примеры неуязвимых к атакам на хабы связных графов}
+ \section{Задача 4. Задача про локальный кластерный коэффициент}
+ \section{Задача 5. Утверждение о клике в модели Эрдёша-Реньи}
+ \section{Задача 6. Утверждение о цикле в компоненте связности в модели Эрдёша-Реньи}
+ 
+\end{document}

@@ -1,0 +1,5 @@
+/networkx_gephi/*
+*.ipynb_checkpoints/*
+*.aux
+*.log
+*.rar
