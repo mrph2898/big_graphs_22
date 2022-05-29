@@ -1,16 +1,18 @@
-# Практические задания по курсу "Большие графы и модели сложных сетей" в 2022 г.
+# Practical tasks of course "Large Graphs and Complex Networks Models" in 2022 г.
 
-## Задача 1
-В директории problem1 содержатся решения задачи 1. Описание постановки - файл   problem1/problems1.
-Выполненные теоретические задания 1-6 (кроме 2 и 6) скомпилированы в tex и находятся в директории problem1/1_6. Решения практических задач изложены в problem1/7_9.ipynb. Результаты графиков и графов, требуемых в заданиях 7-9 оформлены в виде файлов graph_<номер задания>.png
+## Problem 1
+Directory problem1 contains solutions for the first problem. Description of the problem is in problem1/problems1.
+Solved theoretical tasks 1-6 (without 2 and 6) are compiled in tex and placed in the directory problem1/1_6. 
+Solutions of theoretical tasks is in problem1/7_9.ipynb. 
+Required in tasks 7-9 plots and graphs are presented in format graph_<task number>.png
 
-Также помещены файлы данных подписчиков пользователя и его подписчиков в файлах problem1/parsed_friends.txt и .csv.
+Also in files problem1/parsed_friends.txt and .csv are parsed from a livejournal data of a user and his subscribers.
+  
+Additionally file problem1/varlamov_graph_gephi.gephi with a processed graph is saved for visualization of task 9 in gephi.
 
-Дополнительно сохранён файл с обработанным графом для визуализации задания 9 в gephi в файле problem1/varlamov_graph_gephi.gephi
+## Problem 2
+Directory problem2 contains solution of problem 2. Description of the problem is in problem2/problems2.
+Solved theoretical tasks 1-6 and second part of task 9 scanned in pdf-file problem2/1_6_9.pdf.
 
-## Задача 2
-В директории problem2 содержатся решения задачи 2. Описание постановки - файл   problem2/problems2.
-Выполненные теоретические задания 1-6 и второй пункт задания 9 отсканированы в pdf-файл problem2/1_6_9.pdf.
-
-Решения практических задач изложены в problem2/7_9.ipynb. 
-Результаты графиков, необходимых в 7-9 заданиях, приведены в виде файлов graph_<номер задания и подпункта>.png
+Solution of practical tasks is in problem2/7_9.ipynb. 
+Required in tasks 7-9 plots and graphs are presented in format graph_<task number>.png
